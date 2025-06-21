@@ -1,7 +1,8 @@
 import axios from "axios";
+import { coinLoreCoinSchema, tickersResponseSchema } from "../utils/validators";
+import z from "zod";
 
-// Raw CoinLore coin type
-export interface CoinLoreCoin {
+export interface CoinLoreProps {
   id?: string;
   symbol?: string;
   name?: string;
@@ -10,30 +11,40 @@ export interface CoinLoreCoin {
   market_cap_usd?: string;
 }
 
-// The response shape for paged tickers
 export interface TickersResponse {
-  data: CoinLoreCoin[];
+  data: CoinLoreProps[];
   info: { coins_num: number; time: number };
 }
 
 export const fetchMarketData = async (): Promise<{
-  coins: CoinLoreCoin[];
+  coins: CoinLoreProps[];
   total: number;
 }> => {
   const { data } = await axios.get<TickersResponse>(
     "https://api.coinlore.net/api/tickers/",
     { params: { start: 0, limit: 95 } }
   );
-  return { coins: data.data, total: data.data.length };
+  const parsed = tickersResponseSchema.safeParse(data);
+  if (!parsed.success) {
+    console.error("Zod validation error:", parsed.error.format());
+    throw new Error("Invalid API response structure");
+  }
+  return { coins: parsed.data.data, total: parsed.data.info.coins_num };
 };
 
 export const fetchCoinsByIds = async (
   ids: string[]
-): Promise<CoinLoreCoin[]> => {
+): Promise<CoinLoreProps[]> => {
   if (!ids.length) return [];
-  const { data } = await axios.get<CoinLoreCoin[]>(
+  const { data } = await axios.get<CoinLoreProps[]>(
     "https://api.coinlore.net/api/ticker/",
     { params: { id: ids.join(",") } }
   );
-  return data;
+  const coinArraySchema = z.array(coinLoreCoinSchema);
+  const parsed = coinArraySchema.safeParse(data);
+  if (!parsed.success) {
+    console.error(parsed.error.format());
+    throw new Error("Invalid coins data");
+  }
+  return parsed.data;
 };

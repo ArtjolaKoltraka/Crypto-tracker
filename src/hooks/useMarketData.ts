@@ -1,10 +1,10 @@
 import { useState, useEffect, useMemo } from "react";
 import { useSearchStore } from "../store/useSearchStore";
-import { fetchMarketData, CoinLoreCoin } from "../api/coinLore";
+import { fetchMarketData, CoinLoreProps } from "../api/coinLore";
 
 export default function useMarketData(perPage = 20, page = 1) {
   const search = useSearchStore((s) => s.search.trim().toLowerCase());
-  const [allCoins, setAllCoins] = useState<CoinLoreCoin[]>([]);
+  const [allCoins, setAllCoins] = useState<CoinLoreProps[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 

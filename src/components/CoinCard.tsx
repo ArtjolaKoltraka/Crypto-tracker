@@ -35,12 +35,7 @@ const CoinCard: React.FC<CoinCardProps> = ({ coin }) => {
   return (
     <tr className=" border-t border-neutral-150 last:border-b">
       <td className="bg-white text-right font-semibold text-neutral-900 px-3 py-2 flex justify-center items-center">
-        <img
-          src={src}
-          alt={coin.name}
-          className="w-8 h-8"
-          onError={handleError}
-        />
+        <img src={src} alt="" className="w-8 h-8" onError={handleError} />
       </td>
       <td className="bg-white text-left text-neutral-700 px-3 py-2 leading-tight">
         {coin.name} ({coin.symbol.toUpperCase()})
@@ -56,6 +51,9 @@ const CoinCard: React.FC<CoinCardProps> = ({ coin }) => {
         }`}
       >
         {coin.percent_change_24h ?? 0}%
+      </td>
+      <td className="bg-white text-center px-3 py-2">
+        <WatchlistButton coinId={coin.id} />
       </td>
     </tr>
   );
