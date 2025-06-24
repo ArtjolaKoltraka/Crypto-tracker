@@ -15,15 +15,19 @@ const Watchlist: React.FC = () => {
       .then(setCoins)
       .catch((e) => setError(e as Error))
       .finally(() => setLoading(false));
-    console.log("Current watchlist IDs:", watchlist);
   }, [watchlist]);
 
   if (error) return <p>Error: {error.message}</p>;
 
   return (
-    <div className="flex flex-col items-center px-12 mb-5">
-      <CoinTable coins={coins} loading={loading} />
-    </div>
+    <>
+      <div className="flex flex-col items-center px-12 mb-5">
+        <p className="text-blue-600 dark:text-white text-lg mb-2">
+          Keep track of your favorite Crypto Coins
+        </p>
+        <CoinTable coins={coins} loading={loading} />
+      </div>
+    </>
   );
 };
 

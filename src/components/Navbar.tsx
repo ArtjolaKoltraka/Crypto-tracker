@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import coinTrackerLogo from "../assets/images/coin-tracker.png";
 import { useSearchStore } from "../store/useSearchStore";
+import useThemeStore from "../store/useThemeStore";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -9,6 +10,7 @@ const Navbar = () => {
   const isActive = location.pathname;
   const search = useSearchStore((s) => s.search);
   const setSearch = useSearchStore((s) => s.setSearch);
+  const { theme, toggleTheme } = useThemeStore();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setSearch(e.target.value);
@@ -27,11 +29,11 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`w-full flex flex-wrap items-center justify-between sticky top-[-16px] z-[100000] transition-colors duration-200 ${
+        className={`w-full flex row items-center justify-between sticky top-[-16px] z-[100000] dark:bg-neutral-700 dark:text-neutral-200 transition-colors duration-200 ${
           scrolled ? "bg-gray-300/80 backdrop-blur-md" : "bg-gray-400/30"
         } mb-8 px-6 py-4`}
       >
-        <div className="flex items-center pl-[90px] gap-6">
+        <div className="flex items-center pl-[50px] gap-6">
           <div className="w-[10em]  select-none">
             <Link to="/">
               <img
@@ -47,7 +49,7 @@ const Navbar = () => {
                 className={`text-lg transition-colors duration-200 cursor-pointer ${
                   isActive === "/"
                     ? "text-blue-500 font-medium"
-                    : "text-gray-600"
+                    : "text-gray-600 dark:text-neutral-200"
                 } hover:text-blue-600`}
               >
                 Market
@@ -58,7 +60,7 @@ const Navbar = () => {
                 className={`text-lg transition-colors duration-200 cursor-pointer ${
                   isActive === "/watchlist"
                     ? "text-blue-500 font-medium"
-                    : "text-gray-600"
+                    : "text-gray-600 dark:text-neutral-200"
                 } hover:text-blue-600`}
               >
                 Watchlist
@@ -66,6 +68,12 @@ const Navbar = () => {
             </Link>
           </div>
         </div>
+        <button
+          onClick={toggleTheme}
+          className="text-sm border px-3 py-1 rounded bg-gray-100 dark:bg-neutral-700 dark:text-white"
+        >
+          {theme === "dark" ? "☀ Light" : "🌙 Dark"}
+        </button>
         <form className="w-full max-w-md md:w-auto pr-[100px]">
           <input
             type="text"

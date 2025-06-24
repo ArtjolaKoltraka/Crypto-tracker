@@ -1,21 +1,16 @@
-/* src/styles/pagination.css */
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
-  /* wrapper */
   .pagination-block {
     @apply flex flex-col items-center gap-4;
   }
 
-  /* the UL that react-js-pagination renders */
   .pagination-block .pagination {
     @apply mb-0 flex;
   }
 
-  /* each page-item > page-link */
   .pagination-block .page-item .page-link {
     @apply relative px-4 py-3 rounded text-sm leading-5 tracking-wide text-gray-900 border-0 bg-transparent;
   }
@@ -26,18 +21,15 @@
     @apply outline-none shadow-none;
   }
 
-  /* active underline */
   .pagination-block .page-item.active .page-link::after {
     content: "";
     @apply absolute bottom-0 left-3 right-3 h-1 bg-blue-400;
   }
 
-  /* disabled state */
   .pagination-block .page-item.disabled {
     @apply opacity-50 cursor-not-allowed;
   }
 
-  /* results text under the pagination */
   .pagination-block .pagination-results {
     @apply text-gray-600 text-sm font-medium;
   }

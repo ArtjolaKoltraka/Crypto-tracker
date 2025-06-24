@@ -1,10 +1,14 @@
-/* Ensure you are processing this file with Tailwind CSS and PostCSS */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 @import "./assets/styles/pagination.css";
 @import "./assets/styles/icons.css";
+@import "./assets/styles/global-styles.css";
 
 body {
   @apply bg-gray-100;
+}
+
+.dark body {
+  @apply bg-neutral-500; /* dark mode */
 }

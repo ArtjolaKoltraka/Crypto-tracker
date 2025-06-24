@@ -8,7 +8,7 @@ export interface CoinLoreProps {
   name?: string;
   price_usd?: string;
   percent_change_24h?: string;
-  market_cap_usd?: string;
+  market_cap_usd: string;
 }
 
 export interface TickersResponse {

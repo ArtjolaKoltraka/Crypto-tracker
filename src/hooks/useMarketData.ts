@@ -11,13 +11,19 @@ export default function useMarketData(perPage = 20, page = 1) {
 
   useEffect(() => {
     setLoading(true);
-    fetchMarketData()
-      .then(({ coins }) => {
-        setAllCoins(coins);
-        setError(null);
-      })
-      .catch((e) => setError(e as Error))
-      .finally(() => setLoading(false));
+    const fetchData = () => {
+      fetchMarketData()
+        .then(({ coins }) => {
+          setAllCoins(coins);
+          setError(null);
+        })
+        .catch((e) => setError(e))
+        .finally(() => setLoading(false));
+    };
+
+    fetchData();
+    const interval = setInterval(fetchData, 10000);
+    return () => clearInterval(interval);
   }, []);
 
   useEffect(() => {

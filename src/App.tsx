@@ -1,6 +1,5 @@
 import "./App.css";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Watchlist from "./pages/Watchlist";
 import { lazy, Suspense } from "react";
 import Navbar from "./components/Navbar";
 import Market from "./pages/Market";
@@ -16,7 +15,7 @@ function App() {
         <Route
           path="/watchlist"
           element={
-            <Suspense fallback={<></>}>
+            <Suspense fallback={null}>
               <Watchlist />
             </Suspense>
           }

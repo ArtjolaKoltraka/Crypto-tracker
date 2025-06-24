@@ -12,11 +12,11 @@
 .left-pagination-icon {
   mask-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M11.875 14.375L6.875 10L11.875 5.625V14.375Z' fill='%23696F8C'/%3E%3C/svg%3E%0A");
   mask-size: 25px;
-  background-color: #696f8c;
+  background-color: #33343d;
 }
 
 .right-pagination-icon {
   mask-image: url("data:image/svg+xml,%3Csvg width='20' height='20' viewBox='0 0 20 20' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill-rule='evenodd' clip-rule='evenodd' d='M8.125 5.625L13.125 10L8.125 14.375V5.625Z' fill='%23696F8C'/%3E%3C/svg%3E%0A");
   mask-size: 25px;
-  background-color: #696f8c;
+  background-color: #33343d;
 }
