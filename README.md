@@ -1,6 +1,6 @@
 # 🪙 Crypto Tracker
 
-Crypto Tracker is a responsive web application designed to help users monitor real-time cryptocurrency data, filter and search through coins, manage a personal watchlist, and switch between light and dark modes for better user experience.
+Crypto Tracker is a responsive web application that allows users to monitor real-time cryptocurrency market data, explore detailed coin information, and manage a personal watchlist. The app also features dynamic price charts, theming (light/dark), and real-time market overview stats.
 
 ## 🎯 Project Goal
 
@@ -11,6 +11,8 @@ The main goal of this project is to create a simple yet functional crypto market
 - Add/remove coins from a personalized watchlist
 - Navigate data efficiently with pagination
 - Switch between light and dark themes
+- View detailed coin data, including a price chart (1 day to 1 year)
+- See a real-time market overview (market cap, volume, BTC dominance, liquidity)
 - Gain practice with React components, state management, and external API integration
 
 ---
@@ -28,23 +30,26 @@ Make sure you have the following installed:
 
 Clone the repository and install dependencies:
 
-cd crypto-tracker
+https://github.com/ArtjolaKoltraka/Crypto-tracker.git
+
 npm install
 
 🧰 Technologies and APIs Used
 🛠️ Technologies
 React – UI framework
-
-React Router – Navigation between Market and Watchlist pages
-
-CSS Modules / Styled Components / TailwindCSS
-
+React Router – Navigation between Market and Watchlist Coin-Detail pages
+TailwindCSS
+Zustand
 Jest + React Testing Library – Basic testing
 
 🌐 APIs
-CoinLore API – Fetches real-time cryptocurrency data
+CoinGecko API – Used for coin description
+LiveCoinWatch API – Used for table data, market overview, details and complementary metrics
 
-📸 Screenshots
-![alt text](<Screenshot 2025-06-24.png>)
-![alt text](<Screenshot 2025-06-24 193617.png>)
-![alt text](<Screenshot 2025-06-24 193511.png>)
+Screenshots
+![alt text](<Screenshot 2025-06-30 215444.png>)
+![alt text](<Screenshot 2025-06-30 215759.png>)
+![alt text](<Screenshot 2025-06-30 215526.png>)
+![alt text](<Screenshot 2025-06-30 215745.png>)
+![alt text](<Screenshot 2025-06-30 215810.png>)
+![alt text](<Screenshot 2025-06-30 215836.png>)

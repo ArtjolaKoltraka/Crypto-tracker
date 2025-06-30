@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
-import coinTrackerLogo from "../assets/images/coin-tracker.png";
-import { useSearchStore } from "../store/useSearchStore";
-import useThemeStore from "../store/useThemeStore";
+import coinTrackerLogo from "../../assets/images/coin-tracker.png";
+import { useSearchStore } from "../../store/useSearchStore";
+import useThemeStore from "../../store/useThemeStore";
 
 const Navbar = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -29,7 +29,7 @@ const Navbar = () => {
   return (
     <>
       <nav
-        className={`w-full flex row items-center justify-between sticky top-[-16px] z-[100000] dark:bg-neutral-700 dark:text-neutral-200 transition-colors duration-200 ${
+        className={`w-full flex row items-center justify-between sticky top-[-5px] z-[100000] dark:bg-slate-600 dark:text-neutral-200 transition-colors duration-200 ${
           scrolled ? "bg-gray-300/80 backdrop-blur-md" : "bg-gray-400/30"
         } mb-8 px-6 py-4`}
       >
@@ -70,7 +70,7 @@ const Navbar = () => {
         </div>
         <button
           onClick={toggleTheme}
-          className="text-sm border px-3 py-1 rounded bg-gray-100 dark:bg-neutral-700 dark:text-white"
+          className="text-sm border px-3 py-1 rounded bg-gray-100 dark:bg-slate-700 dark:text-white"
         >
           {theme === "dark" ? "☀ Light" : "🌙 Dark"}
         </button>
@@ -78,7 +78,7 @@ const Navbar = () => {
           <input
             type="text"
             placeholder="🔍 Search..."
-            className="pl-4 outline-none h-[42px] rounded text-white bg-gradient-to-r from-blue-300 to-blue-400 placeholder-white shadow-inner "
+            className="pl-4 outline-none h-[42px] rounded text-white bg-gradient-to-r from-blue-300 to-slate-400 placeholder-white shadow-inner "
             value={search}
             onChange={handleChange}
           />

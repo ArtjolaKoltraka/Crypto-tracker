@@ -1,41 +1,79 @@
-import React from "react";
 import { render, screen } from "@testing-library/react";
-import CoinTable from "../components/CoinTable"; // adjust path as needed
+import CoinTable from "../components/coin_table/CoinTable";
+import { BrowserRouter } from "react-router-dom";
+
+jest.mock("../components/CoinOverview", () => () => (
+  <div data-testid="coin-overview">Mocked CoinOverview</div>
+));
 
 const mockCoins = [
   {
-    id: "90",
-    symbol: "btc",
+    id: "1",
+    code: "BTC",
     name: "Bitcoin",
-    price_usd: "69000",
-    percent_change_24h: "0.5",
-    market_cap_usd: "1000000000",
+    rate: 30000,
+    delta: {
+      hour: 0.5,
+      day: 2.5,
+      week: 5,
+      month: 10,
+      quarter: 15,
+      year: 80,
+    },
+    png64: "btc.png",
+    cap: 600000000000,
+  },
+  {
+    id: "2",
+    code: "ETH",
+    name: "Ethereum",
+    rate: 1800,
+    delta: {
+      hour: -0.3,
+      day: -1.2,
+      week: 0,
+      month: 5,
+      quarter: 10,
+      year: 50,
+    },
+    png64: "eth.png",
+    cap: 200000000000,
   },
 ];
 
-jest.mock("../hooks/useCoinIcons", () => ({
-  __esModule: true,
-  default: () => ({
-    icons: { btc: "https://example.com/btc.svg" },
-  }),
-}));
-
-describe("CoinTable component", () => {
-  it("shows loading spinner when loading is true", () => {
-    render(<CoinTable coins={[]} loading={true} error={null} />);
+describe("CoinTable", () => {
+  it("renders loading state", () => {
+    render(
+      <BrowserRouter>
+        <CoinTable coins={[]} loading />
+      </BrowserRouter>
+    );
     expect(screen.getByText(/loading/i)).toBeInTheDocument();
   });
 
-  it("shows error message when error is passed", () => {
-    const error = new Error("API failure");
-    render(<CoinTable coins={[]} loading={false} error={error} />);
-    expect(screen.getByText(/API failure/i)).toBeInTheDocument();
+  it("renders coin names", () => {
+    render(
+      <BrowserRouter>
+        <CoinTable coins={mockCoins} />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText(/Bitcoin/i)).toBeInTheDocument();
+
+    expect(screen.getByText(/Ethereum/i)).toBeInTheDocument();
   });
 
-  it("renders coin rows when data is present", () => {
-    render(<CoinTable coins={mockCoins} loading={false} error={null} />);
-    expect(screen.getByText(/Bitcoin/i)).toBeInTheDocument();
-    expect(screen.getByText(/\$69000/i)).toBeInTheDocument();
-    expect(screen.getByText(/0.5%/i)).toBeInTheDocument();
+  it("renders table headers", () => {
+    render(
+      <BrowserRouter>
+        <CoinTable coins={mockCoins} />
+      </BrowserRouter>
+    );
+
+    expect(screen.getByText(/name/i)).toBeInTheDocument();
+    expect(screen.getByText(/price usd/i)).toBeInTheDocument();
+    expect(screen.getByText(/24h %/i)).toBeInTheDocument();
+    expect(screen.getByText(/market cap/i)).toBeInTheDocument();
+    expect(screen.getByText(/add to watchlist/i)).toBeInTheDocument();
   });
 });

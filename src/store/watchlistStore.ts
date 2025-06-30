@@ -3,22 +3,22 @@ import { getLocalStorage, setLocalStorage } from "../utils/localStorage";
 
 interface WatchlistState {
   watchlist: string[];
-  add: (id: string) => void;
-  remove: (id: string) => void;
+  add: (code: string) => void;
+  remove: (code: string) => void;
 }
 
 const useWatchlistStore = create<WatchlistState>((set, get) => ({
   watchlist: getLocalStorage<string[]>("watchlist") ?? [],
-  add: (id) => {
+  add: (code) => {
     set((state) => {
-      const updated = Array.from(new Set([...state.watchlist, id]));
+      const updated = Array.from(new Set([...state.watchlist, code]));
       setLocalStorage("watchlist", updated);
       return { watchlist: updated };
     });
   },
-  remove: (id) => {
+  remove: (code) => {
     set((state) => {
-      const updated = state.watchlist.filter((x) => x !== id);
+      const updated = state.watchlist.filter((x) => x !== code);
       setLocalStorage("watchlist", updated);
       return { watchlist: updated };
     });

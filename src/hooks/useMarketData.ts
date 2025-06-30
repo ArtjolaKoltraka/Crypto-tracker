@@ -1,11 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSearchStore } from "../store/useSearchStore";
-import { fetchMarketData, CoinLoreProps } from "../api/coinLore";
+import { CoinMarketTableProps, fetchMarketData } from "../api/apiRequests";
 
 export default function useMarketData(perPage = 20, page = 1) {
   const search = useSearchStore((s) => s.search.trim().toLowerCase());
-  const [allCoins, setAllCoins] = useState<CoinLoreProps[]>([]);
-  const [filteredCoins, setFilteredCoins] = useState<CoinLoreProps[]>([]);
+  const [allCoins, setAllCoins] = useState<CoinMarketTableProps[]>([]);
+  const [filteredCoins, setFilteredCoins] = useState<CoinMarketTableProps[]>(
+    []
+  );
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
@@ -16,6 +18,7 @@ export default function useMarketData(perPage = 20, page = 1) {
         .then(({ coins }) => {
           setAllCoins(coins);
           setError(null);
+          console.log(coins);
         })
         .catch((e) => setError(e))
         .finally(() => setLoading(false));
@@ -34,7 +37,7 @@ export default function useMarketData(perPage = 20, page = 1) {
         allCoins.filter(
           (c) =>
             c.name?.toLowerCase().includes(search) ||
-            c.symbol?.toLowerCase().includes(search)
+            c.code?.toLowerCase().includes(search)
         )
       );
     }

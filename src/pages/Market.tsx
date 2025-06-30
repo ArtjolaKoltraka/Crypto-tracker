@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import useMarketData from "../hooks/useMarketData";
 import CustomPagination from "../helpers/CustomPagination";
-import CoinTable from "../components/CoinTable";
+import CoinTable from "../components/coin_table/CoinTable";
 import { useSearchStore } from "../store/useSearchStore";
 
 const Market: React.FC = () => {

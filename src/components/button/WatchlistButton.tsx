@@ -1,5 +1,5 @@
 import React from "react";
-import useWatchlistStore from "../store/watchlistStore";
+import useWatchlistStore from "../../store/watchlistStore";
 
 interface Props {
   coinId: string;
