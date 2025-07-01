@@ -18,7 +18,6 @@ export default function useMarketData(perPage = 20, page = 1) {
         .then(({ coins }) => {
           setAllCoins(coins);
           setError(null);
-          console.log(coins);
         })
         .catch((e) => setError(e))
         .finally(() => setLoading(false));

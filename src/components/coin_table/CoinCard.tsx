@@ -33,7 +33,7 @@ const CoinCard: React.FC<CoinCardProps> = ({ coin }) => {
         className="table-cell-text cursor-pointer px-12"
       >
         <div className="flex row gap-3 py-2 rounded-md">
-          <img src={coin.image} alt="" className="w-8 h-8" />
+          {coin.image && <img src={coin.image} alt="" className="w-8 h-8" />}
           <span className="hover:text-blue-400 hover:underline transition duration-200 rounded">
             {coin.name} ({coin.symbol.toUpperCase()})
           </span>

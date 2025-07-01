@@ -66,78 +66,69 @@ export default function CoinDetail() {
         year: "numeric",
       });
     }
-
     return { date: format, rate: h.rate };
   });
 
+  if (!coin || !coin.png64)
+    return (
+      <div className="flex items-center justify-center h-[340px]">
+        <Loading />
+      </div>
+    );
   return (
     <>
       <div className="bg-container rounded-xl shadow-lg p-6 max-w-4xl mx-auto space-y-6">
-        {loading ? (
-          <div className="flex items-center justify-center h-[340px]">
-            <Loading />
+        <div className="flex items-center justify-center gap-4">
+          {coin.png64 && (
+            <img src={coin.png64} alt={coin.name} className="w-10 h-10" />
+          )}
+          <h2 className="text-2xl font-bold">
+            {coin.name}{" "}
+            <span className="text-slate-400 text-lg font-medium">
+              (Rank #{coin.rank})
+            </span>
+          </h2>
+        </div>
+        <div className="grid grid-cols-3 sm:grid-cols-6 gap-y-4 text-sm text-center">
+          <ChangeCell label="1H" rawValue={coin.delta.hour} />
+          <ChangeCell label="24H" rawValue={coin.delta.day} />
+          <ChangeCell label="7D" rawValue={coin.delta.week} />
+          <ChangeCell label="30D" rawValue={coin.delta.month} />
+          <ChangeCell label="90D" rawValue={coin.delta.quarter} />
+          <ChangeCell label="1Y" rawValue={coin.delta.year} />
+        </div>
+        <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 text-sm text-center">
+          <Stat label="Market Cap" value={`$${formatNumber(coin.cap)}`} />
+          <Stat label="Volume (24h)" value={`$${formatNumber(coin.volume)}`} />
+          <Stat label="Current Price" value={`$${coin.rate.toFixed(2)}`} />
+          <Stat
+            label="All-Time High"
+            value={`$${coin.allTimeHighUSD.toFixed(2)}`}
+          />
+          <Stat
+            label="Circulating Supply"
+            value={formatNumber(coin.circulatingSupply)}
+          />
+          {coin.totalSupply && (
+            <Stat label="Total Supply" value={formatNumber(coin.totalSupply)} />
+          )}
+          {coin.maxSupply && (
+            <Stat label="Max Supply" value={formatNumber(coin.maxSupply)} />
+          )}
+          {coin.markets && <Stat label="Active Markets" value={coin.markets} />}
+        </div>
+        {coin.links?.website && (
+          <div className="text-center pt-4">
+            <span className="text-gray-400">Website: </span>
+            <a
+              href={coin.links.website}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-blue-400 hover:underline break-all"
+            >
+              {coin.links.website}
+            </a>
           </div>
-        ) : (
-          <>
-            <div className="flex items-center justify-center gap-4">
-              <img src={coin.png64} alt={coin.name} className="w-10 h-10" />
-              <h2 className="text-2xl font-bold">
-                {coin.name}{" "}
-                <span className="text-slate-400 text-lg font-medium">
-                  (Rank #{coin.rank})
-                </span>
-              </h2>
-            </div>
-            <div className="grid grid-cols-3 sm:grid-cols-6 gap-y-4 text-sm text-center">
-              <ChangeCell label="1H" rawValue={coin.delta.hour} />
-              <ChangeCell label="24H" rawValue={coin.delta.day} />
-              <ChangeCell label="7D" rawValue={coin.delta.week} />
-              <ChangeCell label="30D" rawValue={coin.delta.month} />
-              <ChangeCell label="90D" rawValue={coin.delta.quarter} />
-              <ChangeCell label="1Y" rawValue={coin.delta.year} />
-            </div>
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-y-4 text-sm text-center">
-              <Stat label="Market Cap" value={`$${formatNumber(coin.cap)}`} />
-              <Stat
-                label="Volume (24h)"
-                value={`$${formatNumber(coin.volume)}`}
-              />
-              <Stat label="Current Price" value={`$${coin.rate.toFixed(2)}`} />
-              <Stat
-                label="All-Time High"
-                value={`$${coin.allTimeHighUSD.toFixed(2)}`}
-              />
-              <Stat
-                label="Circulating Supply"
-                value={formatNumber(coin.circulatingSupply)}
-              />
-              {coin.totalSupply && (
-                <Stat
-                  label="Total Supply"
-                  value={formatNumber(coin.totalSupply)}
-                />
-              )}
-              {coin.maxSupply && (
-                <Stat label="Max Supply" value={formatNumber(coin.maxSupply)} />
-              )}
-              {coin.markets && (
-                <Stat label="Active Markets" value={coin.markets} />
-              )}
-            </div>
-            {coin.links?.website && (
-              <div className="text-center pt-4">
-                <span className="text-gray-400">Website: </span>
-                <a
-                  href={coin.links.website}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-blue-400 hover:underline break-all"
-                >
-                  {coin.links.website}
-                </a>
-              </div>
-            )}
-          </>
         )}
       </div>
       <div className="bg-container rounded-xl shadow-lg p-6 max-w-4xl mx-auto mt-8">

@@ -16,7 +16,7 @@ export default function CoinOverview() {
   const previous = useRef<CoinOverviewProps | null>(null);
 
   const getColor = (curr: number, prev: number | null) => {
-    if (prev === null) return "text-white";
+    if (prev === null) return "text-black dark:text-white";
     return curr >= prev ? "text-green-400" : "text-red-400";
   };
 
