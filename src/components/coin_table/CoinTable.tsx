@@ -16,7 +16,7 @@ const CoinTable: React.FC<CoinTableProps> = ({ coins, loading, error }) => {
   return (
     <>
       <CoinOverview />
-      <div className="w-full h-[350px] overflow-y-auto rounded-md bg-neutral-50 dark:bg-slate-800 shadow-md mt-4">
+      <div className="w-full max-h-[70vh] overflow-y-auto rounded-md bg-neutral-50 dark:bg-slate-800 shadow-md mt-4">
         <table
           role="table"
           className="table-fixed min-w-[600px] w-full text-sm"
@@ -51,7 +51,7 @@ const CoinTable: React.FC<CoinTableProps> = ({ coins, loading, error }) => {
               <tr>
                 <td
                   colSpan={5}
-                  className="text-center text-neutral-500 bg-container h-[300px]"
+                  className="text-center text-neutral-500 bg-container h-[70vh]"
                 >
                   <div className="flex justify-center items-center h-full">
                     <Loading />

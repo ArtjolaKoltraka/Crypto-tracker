@@ -77,7 +77,7 @@ export default function CoinDetail() {
     );
   return (
     <>
-      <div className="bg-container rounded-xl shadow-lg p-6 max-w-4xl mx-auto space-y-6">
+      <div className="bg-container rounded-xl shadow-lg p-6 max-w-6xl mx-auto space-y-6">
         <div className="flex items-center justify-center gap-4">
           {coin.png64 && (
             <img src={coin.png64} alt={coin.name} className="w-10 h-10" />
@@ -131,7 +131,7 @@ export default function CoinDetail() {
           </div>
         )}
       </div>
-      <div className="bg-container rounded-xl shadow-lg p-6 max-w-4xl mx-auto mt-8">
+      <div className="bg-container rounded-xl shadow-lg p-6 max-w-6xl mx-auto mt-8">
         <h2 className="text-xl font-bold mb-4 text-center">
           Day Price Chart (USD)
         </h2>

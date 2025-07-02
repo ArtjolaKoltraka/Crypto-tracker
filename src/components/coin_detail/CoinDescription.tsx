@@ -25,7 +25,7 @@ const CoinDescription = ({ coinId }: CoinDescriptionProps) => {
   });
 
   return (
-    <div className="bg-container rounded-xl shadow-lg p-6 max-w-4xl mx-auto space-y-6 mt-8 mb-5">
+    <div className="bg-container rounded-xl shadow-lg p-6 max-w-6xl mx-auto space-y-6 mt-8 mb-5">
       <h2 className="text-xl font-semibold">{title}</h2>
 
       {description ? (
